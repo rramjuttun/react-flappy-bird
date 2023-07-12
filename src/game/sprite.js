@@ -22,7 +22,6 @@ export const Sprite = ({ filename, x, y, width, height }) => {
     height,
   };
 
-  //added new x,y,w,h so that the store can use this compute value
   return <div style={style} data-x={x} data-y={y} data-w={width} data-h={height} />;
 };
 
@@ -118,7 +117,7 @@ export const bg_h = bg.props['data-h']
 export const bg_w = bg.props['data-w']
 export const fg_h = fg.props['data-h']
 export const fg_w = fg.props['data-w']
-export const bird_h = bird0.props['data-h'] //all the bird maintain same height
-export const bird_w = bird0.props['data-w'] //all the bird maintain same width
-export const pipe_h = pipeN.props['data-h'] //both pipe north and south are same height
-export const pipe_w = pipeN.props['data-w'] //both pipe north and south are same width
+export const bird_h = bird0.props['data-h']
+export const bird_w = bird0.props['data-w'] 
+export const pipe_h = pipeN.props['data-h'] 
+export const pipe_w = pipeN.props['data-w'] 

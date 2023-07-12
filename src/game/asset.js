@@ -2,8 +2,6 @@ import { extendObservable} from 'mobx';
 
 export class baseObj {
   constructor(id, cx, cy){
-      // this.cx = cx;
-      // this.cy = cy;
       extendObservable(this, {
           cx: cx,
           cy: cy,
