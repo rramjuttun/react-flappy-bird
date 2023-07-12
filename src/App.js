@@ -115,7 +115,7 @@ const App = observer(class App extends Component {
   //Call to store to update the frame
   appUpdateFrame = () => {
     this.props.updateFrame(); //this will trigger mobx to update the view when the observable value changes
-    this.req = window.requestAnimationFrame(this.appUpdateFrame) // rerun this function again when browser is ready to update new frame
+    this.req = window.requestAnimationFrame(this.appUpdateFrame) //rerun this function again when browser is ready to update new frame
   }
 
   render() {

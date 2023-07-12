@@ -40,9 +40,9 @@ function guid() {
 
 const updateBird = function(bird) {
   bird.frame += store.frames % 10 === 0 ? 1 : 0;
-  bird.frame %= bird.animation.length; //at every 10th, frame change bird frame
+  bird.frame %= bird.animation.length; //change bird frame every 10 frames
 
-  if (game.currentstate === states.Splash) { //if splash screen make the bird hover
+  if (game.currentstate === states.Splash) { //make the bird hover on the splash screen
 
     bird.cy = height - 280 + 5*Math.cos(store.frames/10)  // ~199 - ~201
     bird.rotation = 0;
@@ -59,12 +59,11 @@ const updateBird = function(bird) {
             game.currentstate = states.Score;
 
   		}
-      // sets velocity to jump speed for correct rotation
+      // set velocity to jump speed for correct rotation
       bird.velocity = bird._jump;
     }
 
-    // when bird lack upward momentum increment the rotation
-    // angle
+    // when bird lacks upward momentum, increment the rotation angle
     if (bird.velocity >= bird._jump) {
 
       bird.frame = 1;
@@ -106,9 +105,8 @@ const updatePipe = function() {
     if (r > d1) {
       game.currentstate = states.Score;
     }
-    //Move the pipe towards left
+    //Move the pipe left
     p.cx -= 2
-    //If pipe continue to move out of spaces
     if (p.cx < -pipe_w) {
       store.pipes.splice(0, 2); //remove first 2 pipe
     }
