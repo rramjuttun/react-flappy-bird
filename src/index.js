@@ -1,14 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 //import reportWebVitals from './reportWebVitals';
 import { store, updateFrame, birdjump, game, states, rungame } from './game/store';
 
-ReactDOM.render(
-  <App store={store} updateFrame={updateFrame} game={game}/>,
+const root = ReactDOM.createRoot(
   document.getElementById('root')
 );
+
+root.render(
+  <App store={store} updateFrame={updateFrame} game={game}/>
+)
 
 function onPress(evt) {
   switch (game.currentstate) {
