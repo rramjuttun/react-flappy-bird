@@ -26,9 +26,9 @@ Your app is ready to be deployed!
 
 ## Deployment
 
-IPFS supports website hosting natively. To deploy the app to IPFS, simply run `npm run build` and upload the resulting `build` folder to IPFS using any method (CLI, webUI, etc..).
+IPFS supports website hosting natively. To deploy the app to IPFS, simply run `npm run build` and upload the resulting `build` folder to IPFS using any method (CLI, webUI, etc..). If nothing has been changed in the code, the resulting V1 CID should be `bafybeib2iadwfus4qnjeebop4frndpxtmcicd5bpkrfozvjqun2g2augua`. 
 
-Access the app with the folder CID using any IPFS gateway. Example: `https://ipfs.io/<CID>`
+Access the app with the folder CID using any IPFS gateway. Example: `https://ipfs.io/ipfs/bafybeib2iadwfus4qnjeebop4frndpxtmcicd5bpkrfozvjqun2g2augua`
 
 
 ## Acknowledgement
