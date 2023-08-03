@@ -1,7 +1,8 @@
 import {bg, fg, bird, pipe } from './asset'
 import { height } from './common';
 import { bg_h, bg_w, fg_h, fg_w, pipe_h, pipe_w, bird_h, bird_w} from './sprite'; //To get sprite properties
-import { action, observable } from 'mobx';
+import { action, observable, runInAction } from 'mobx';
+import { Web3Auth } from "@web3auth/modal";
 
 const bg1 = new bg(guid(), 0, height - bg_h)
 const bg2 = new bg(guid(), bg_w, height - bg_h)
@@ -11,7 +12,7 @@ const fg1 = new fg(guid(), 0, height - fg_h )
 const fg2 = new fg(guid(), fg_w, height - fg_h )
 
 export const states = {
-   Splash: 0, Game: 1, Score: 2
+  Login: 0, Splash: 1, Game: 2, Score: 3
 }
 
 //Game state
@@ -26,6 +27,34 @@ export const store = {
   bgs: [ bg1, bg2 ],
   fgs: [ fg1, fg2 ],
   pipes: observable([]), //initialize with empty pipe
+}
+
+export const web3login = action(async function() {
+  const web3auth = new Web3Auth({
+    clientId: process.env.REACT_APP_WEB3AUTH_CLIENT_ID,
+    chainConfig: {
+      chainNamespace: "eip155",
+      chainId: "0x13881",
+      rpcTarget: process.env.REACT_APP_ETH_NODE_URI,
+    },
+    web3AuthNetwork: "cyan"
+  });
+
+  await web3auth.initModal();
+  const provider = await web3auth.connect();
+  const publicKey = (await provider.request({ method: "eth_accounts" }))[0]
+
+  runInAction(() => {
+    userInfo.web3Provider = provider;
+    userInfo.publicKey = publicKey;
+    game.currentstate = states.Splash;
+  });
+})
+
+export const userInfo = {
+  web3Provider: null,
+  publicKey: null,
+  bird: null
 }
 
 function guid() {
@@ -119,15 +148,12 @@ export const birdjump =  action(function(bird) {
 })
 
 export const rungame = action(function() {
-
     store.bird = new bird(guid(),60,0)
     store.fgpos = 0
     store.frames = 1
     store.pipes = observable([])  //Initalize to empty empty on game start
 
-    game.currentstate= states.Game
-
-
+    game.currentstate= states.Game;
 })
 
 //Call to update frame
