@@ -1,7 +1,7 @@
 import {bg, fg, bird, pipe } from './asset'
 import { height } from './common';
 import { bg_h, bg_w, fg_h, fg_w, pipe_h, pipe_w, bird_h, bird_w} from './sprite'; //To get sprite properties
-import { action, observable } from 'mobx';
+import { action, observable, runInAction } from 'mobx';
 
 const bg1 = new bg(guid(), 0, height - bg_h)
 const bg2 = new bg(guid(), bg_w, height - bg_h)
@@ -11,7 +11,7 @@ const fg1 = new fg(guid(), 0, height - fg_h )
 const fg2 = new fg(guid(), fg_w, height - fg_h )
 
 export const states = {
-   Splash: 0, Game: 1, Score: 2
+   Login: 0, Splash: 1, Game: 2, Score: 3
 }
 
 //Game state
@@ -27,6 +27,33 @@ export const store = {
   fgs: [ fg1, fg2 ],
   pipes: observable([]), //initialize with empty pipe
 }
+
+export const userInfo = {
+  web3Provider: null,
+  publicKey: null,
+  bird: null
+}
+
+export const web3login = action(async function() {
+  if(window.ethereum) {
+    try{
+      const addressArray = await window.ethereum.request({method: "eth_requestAccounts"});
+      
+      runInAction(() => {
+        userInfo.web3Provider = window.ethereum;
+        userInfo.publicKey = addressArray[0];
+        game.currentstate = states.Splash;
+      });
+    }
+    catch(err){
+      console.log(err.message)
+    }
+  }
+  else {
+    alert("Metamask not installed. Press OK to reload the page");
+    window.location.reload();
+  }
+})
 
 function guid() {
   function s4() {

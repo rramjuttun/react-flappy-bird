@@ -1,12 +1,13 @@
 //Adapted from react-spritesheet
 import React from 'react';
-import bird_img from '../assets/birds/bird2.png'
+//import bird_img from '../assets/birds/bird2.png'
 import fg_img from '../assets/common/fg.png'
 import bg_img from '../assets/common/bg.png'
 import pipeN_img from '../assets/common/pipeN.png'
 import pipeS_img from '../assets/common/pipeS.png'
 import gameover_img from '../assets/common/gameover.png'
 import ok_img from '../assets/common/_ok_.png'
+import start_img from '../assets/common/_start_.png'
 import splash_img from '../assets/common/splash.png'
 import ready_img from '../assets/common/ready.png'
 
@@ -41,29 +42,35 @@ export const fg = Sprite({
   height: 112
 })
 
-export const bird0 = Sprite({
-  filename: bird_img,
-  x : 0,
-  y : 0,
-  width : 34,
-  height : 24
-})
+export const birdImages = (bird_img) => {
 
-export const bird1 = Sprite({
-  filename: bird_img,
-  x : 0,
-  y : 26,
-  width : 34,
-  height : 24
-})
+  const bird0 = Sprite({
+    filename: bird_img,
+    x : 0,
+    y : 0,
+    width : 34,
+    height : 24
+  })
+  
 
-export const bird2 = Sprite({
-  filename: bird_img,
-  x : 0,
-  y : 52,
-  width : 34,
-  height : 24
-})
+  const bird1 = Sprite({
+    filename: bird_img,
+    x : 0,
+    y : 26,
+    width : 34,
+    height : 24
+  })
+  
+  const bird2 = Sprite({
+    filename: bird_img,
+    x : 0,
+    y : 52,
+    width : 34,
+    height : 24
+  })
+
+  return({bird0, bird1, bird2});
+}
 
 export const pipeN = Sprite({
   filename: pipeN_img,
@@ -97,6 +104,14 @@ export const _ok_ = Sprite({
   height: 28
 })
 
+export const _start_ = Sprite({
+  filename: start_img,
+  x: 0, 
+  y: 0,
+  width: 80,
+  height: 28
+})
+
 export const splash = Sprite({
   filename: splash_img,
   x: 0,
@@ -117,7 +132,7 @@ export const bg_h = bg.props['data-h']
 export const bg_w = bg.props['data-w']
 export const fg_h = fg.props['data-h']
 export const fg_w = fg.props['data-w']
-export const bird_h = bird0.props['data-h']
-export const bird_w = bird0.props['data-w'] 
+export const bird_h = 24
+export const bird_w = 34
 export const pipe_h = pipeN.props['data-h'] 
 export const pipe_w = pipeN.props['data-w'] 

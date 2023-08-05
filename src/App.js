@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import {bg,fg, bird0, bird1, bird2, pipeN, pipeS, gameover, _ok_, splash, ready} from './game/sprite';
+import {bg,fg, birdImages, pipeN, pipeS, gameover, _ok_, _start_, splash, ready} from './game/sprite';
 import {width, height} from './game/common';
 import { observer} from 'mobx-react';
-import {rungame, states} from './game/store';
+import {rungame, states, web3login, userInfo} from './game/store';
 
 const SpriteWrapper = observer(class SpriteWrapper extends Component {
   render() {
@@ -38,19 +38,37 @@ const Fg = observer(class Fg extends Component {
 })
 
 export const Bird = observer(class Bird extends Component {
+  constructor(props) {
+    super(props);
+    this.bird0 = null;
+    this.bird1 = null;
+    this.bird2 = null;
+  }
+
+  componentDidMount() {
+    const { publicKey } = userInfo;
+    let birds;
+    if(publicKey) {
+      birds = birdImages("https://hardbin.com/ipfs/bafkreiclqv6folmmrgyiasyd7wfftyvhmcqjxzzbyncmdtgvs7h5xrg6h4") //hardcode for now
+    } 
+    this.bird0 = birds.bird0
+    this.bird1 = birds.bird1
+    this.bird2 = birds.bird2
+  }
+
   render() {
          let wbird;
          switch(this.props.bird.frame) {
            case 1:
            case 3:
-             wbird = bird1
+             wbird = this.bird1
              break
            case 2:
-             wbird = bird2
+             wbird = this.bird2
              break
            case 0:
            default:
-             wbird = bird0
+             wbird = this.bird0
              break
          }
 
@@ -88,6 +106,14 @@ export const OK = observer(
 
   render() {
       return <SpriteWrapper gameSprite={{cx: width/2 - 40, cy: height-340}} onClickHandler={rungame} > {_ok_} </SpriteWrapper>;
+  }
+})
+
+export const Start = observer(
+  class Start extends Component {
+
+  render() {
+      return <SpriteWrapper gameSprite={{cx: width/2 - 40, cy: height-340}} onClickHandler={web3login} > {_start_} </SpriteWrapper>;
   }
 })
 
@@ -131,7 +157,8 @@ const App = observer(class App extends Component {
       <div className="App" id="fakingcanvas" style={style}>
       { bgs.map( (bg) => ( <Bg bg={bg} key={bg.id} /> )     )}
       { pipes.map( (pipe) => (  <Pipe pipe={pipe} key={pipe.id} /> )   )}
-      <Bird bird={bird} />
+      { (currentstate === states.Login)   ? <Start /> : null}
+      { (currentstate !== states.Login)   ? <Bird bird={bird} />: null}
       { (currentstate === states.Score) ? <Gameover /> : null }
       { (currentstate === states.Score) ? <OK /> : null }
       { (currentstate === states.Splash) ? <Splash /> : null }
