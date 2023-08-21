@@ -1,6 +1,6 @@
 //Adapted from react-spritesheet
 import React from 'react';
-import bird_img from '../assets/birds/bird2.png'
+import bird_img from '../assets/birds/bird1.png'
 import fg_img from '../assets/common/fg.png'
 import bg_img from '../assets/common/bg.png'
 import pipeN_img from '../assets/common/pipeN.png'
