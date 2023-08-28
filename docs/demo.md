@@ -1,4 +1,4 @@
-## React Flappy Bird Web3 Conversion Demo (WIP)
+## React Flappy Bird Web3 Conversion Demo
 
 ### Introduction
 
