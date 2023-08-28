@@ -2,6 +2,12 @@
 
 This is a simple flappy bird implentation using React. Its main purpose is to demonstrate the [VS Code Asset Converter](https://github.com/rramjuttun/vscode-asset-converter) extension and the deployment of react apps to IPFS. 
 
+A step-by-step demo of decentralizing the game with ownable assets can be found in [docs/demo.md](https://github.com/rramjuttun/react-flappy-bird/blob/main/docs/demo.md).
+
+To see completed versions with simple Blockchain login systems, check out the [web3auth](https://github.com/rramjuttun/react-flappy-bird/tree/web3auth) branch or the [metamask](https://github.com/rramjuttun/react-flappy-bird/tree/metamask) branch. Note that for these to work they must be built and deployed to IPFS - they will not work in localhost or dedicated servers. 
+
+
+
 ## Available Scripts
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
 In the project directory, you can run:
@@ -13,8 +19,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-
 
 #### `npm run build`
 
