@@ -5,6 +5,9 @@ import {bg,fg, birdImages, pipeN, pipeS, gameover, _ok_, _start_ ,splash, ready}
 import {width, height} from './game/common';
 import { observer} from 'mobx-react';
 import {rungame, states, web3login, userInfo} from './game/store';
+import { Gateway } from 'ipfs-gateway-fetch'
+import jsonList from './assets/assets.json'
+
 
 const SpriteWrapper = observer(class SpriteWrapper extends Component {
   render() {
@@ -45,11 +48,11 @@ export const Bird = observer(class Bird extends Component {
     this.bird2 = null;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { publicKey } = userInfo
-    console.log('bird mounted');
-    console.log(publicKey);
-    const birds = birdImages("https://hardbin.com/ipfs/bafkreiclqv6folmmrgyiasyd7wfftyvhmcqjxzzbyncmdtgvs7h5xrg6h4") //hardcode for now
+    const gateway = new Gateway(window.location, publicKey, process.env.REACT_APP_ETH_NODE_URI)
+    const url = await gateway.urlFromJsonEntry(jsonList, "src/assets/birds"); 
+    const birds = birdImages(url)
     this.bird0 = birds.bird0
     this.bird1 = birds.bird1
     this.bird2 = birds.bird2
