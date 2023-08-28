@@ -97,5 +97,23 @@ const gateway = new Gateway(window.location, accountAddress, window.ethereum);
 let bird_img = await gateway.urlFromJsonEntry(assets, "src/assets/birds");
 ```
 
+When the connected account does not own an NFT, the gateway will return `null`. To account for this case, add the following code after the code given above. This will give an alert message and refresh the page to try again. 
+```js
+if(!bird_img) {
+  if(!alert('No NFT found for this account. Either mint/transfer an NFT to this account or switch to an account that owns one already. Press OK to refresh')){
+    window.location.reload();
+  }
+}
+```
 
+### Finishing Up
+#### Publishing to IPFS
+The game is now ready to be deployed to IPFS. Instructions are given in the Deploying to IPFS section.
 
+#### Running the game in a non-IPFS context
+As is, the game will currently only work when being accessed from IPFS gateways. This is because IPFS Gateway Fetch uses relative URLs to access IPFS content as `window.location` was given as the gateway.
+
+To test the game in a local server, or if publishing to a dedicated hosting server rather than IPFS, replace `window.location` with any IPFS gateway URI when creating the Gateway instance. For example,
+```js
+const gateway = new Gateway("https://ipfs.io", accountAddress, window.ethereum);
+```
