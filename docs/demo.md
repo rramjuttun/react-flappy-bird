@@ -63,7 +63,7 @@ Once the contract is deployed, minting can easily be done using Blockchain explo
 Once the ERC721 contract has been deployed, all that is left is to modify the game to fetch these assets. This will be done by the IPFS Assets Service Worker. Begin by installing the package. 
 
 ```sh
-npm install https://github.com/rramjuttun/assets-to-nfts
+npm install ipfs-gateway-fetch
 ```
 
 Open `src/assets/sprite.js` and add the following import along with the rest of the import statements. 
