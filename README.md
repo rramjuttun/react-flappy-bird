@@ -4,8 +4,7 @@ This is a simple flappy bird implentation using React. Its main purpose is to de
 
 A step-by-step demo of decentralizing the game with ownable assets can be found in [docs/demo.md](https://github.com/rramjuttun/react-flappy-bird/blob/main/docs/demo.md).
 
-To see completed versions with simple Blockchain login systems, check out the [web3auth](https://github.com/rramjuttun/react-flappy-bird/tree/web3auth) branch or the [metamask](https://github.com/rramjuttun/react-flappy-bird/tree/metamask) branch. Note that for these to work they must be built and deployed to IPFS - they will not work in localhost or dedicated servers. 
-
+To see completed versions with simple Blockchain login systems, check out the [web3auth](https://github.com/rramjuttun/react-flappy-bird/tree/web3auth) branch. Note that for this to work it must be built and deployed to IPFS - it will not work in localhost or dedicated servers. 
 
 
 ## Available Scripts
